@@ -1,8 +1,6 @@
 ASA Version 8.4(2) 
 !
 hostname test
-enable password HuogL3dUCdDNmj2o encrypted
-passwd 2KFQnbNIdI.2KYOU encrypted
 names
 dns-guard
 !

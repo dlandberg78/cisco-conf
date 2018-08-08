@@ -1,8 +1,6 @@
 ASA Version 8.4(2) 
 !
-hostname DEO-HOME
-enable password HuogL3dUCdDNmj2o encrypted
-passwd 2KFQnbNIdI.2KYOU encrypted
+hostname test
 names
 dns-guard
 !
