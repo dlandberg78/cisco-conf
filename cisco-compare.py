@@ -24,7 +24,7 @@ def find_item(item, file_name):
     f.close()
     return item_value, item_line
 
-def find_section(start, end, file_name):
+def find_section(start_char, end_char, file_name):
     item_value = []
     item_line = []
     inRecordingMode = False
@@ -32,12 +32,12 @@ def find_section(start, end, file_name):
     f = open(file_name, 'rt')
     for line in f.readlines():
         line_number = line_number + 1
-        if line.startswith(start):
+        if line.startswith(start_char):
             inRecordingMode = True
             item_value.append(line)
             item_line.append(line_number)
         elif inRecordingMode:
-            if line.startswith(end):
+            if line.startswith(end_char):
                 inRecordingMode = False
                 item_value.append(line)
                 item_line.append(line_number)
@@ -88,11 +88,12 @@ def start():
 
     if opts.obj is '1':
         print '-*- Interface compare: -*-'
-        start_char = ''
+        start_char = 'object'
         end_char = '!'
         obj_current_line, obj_current_value = find_section(start_char,end_char, opts.current)
         obj_new_line, obj_new_value = find_section(start_char, end_char, opts.new)
         compare_lists(obj_current_value, obj_new_value, obj_new_line)
+
 if __name__ == '__main__':
     try:
         start()
