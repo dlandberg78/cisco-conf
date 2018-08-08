@@ -57,7 +57,7 @@ def compare_lists(list_a, list_b, line_b):
 
 def test_file(file_name):
     if not os.path.isfile(file_name):
-        print 'file ' + file_name + ' not found'
+        print 'file ' + '<' + file_name + '>' + ' not found'
         sys.exit(0)
 
 
