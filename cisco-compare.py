@@ -63,8 +63,9 @@ def test_file(file_name):
 
 def start():
     pars = optparse.OptionParser(description=' add later')
-    pars.add_option('--acl', type='string', dest='acl', help='add later', default='None')
-    pars.add_option('--int', type='string', dest='int', help='add later', default='None')
+    pars.add_option('--acl', type='string', dest='acl', help='add later', default=1)
+    pars.add_option('--int', type='string', dest='int', help='add later', default=1)
+    pars.add_option('--obj', type='string', dest='obj', help='add later', default=1)
     pars.add_option('-c', type='string', dest='current', help='add later', default='None')
     pars.add_option('-n', type='string', dest='new', help='add later', default='None')
     opts, args = pars.parse_args()
@@ -79,10 +80,19 @@ def start():
 
     if opts.int is '1':
         print '-*- Interface compare: -*-'
-        key3, value3 = find_section('interface','!', opts.current)
-        key4, value4 = find_section('interface', '!', opts.new)
-        compare_lists(value3, value4, key4)
+        start_char = 'interface'
+        end_char = '!'
+        int_current_line, int_current_value = find_section(start_char,end_char, opts.current)
+        int_new_line, int_new_value = find_section(start_char, end_char, opts.new)
+        compare_lists(int_current_value, int_new_value, int_new_line)
 
+    if opts.obj is '1':
+        print '-*- Interface compare: -*-'
+        start_char = ''
+        end_char = '!'
+        obj_current_line, obj_current_value = find_section(start_char,end_char, opts.current)
+        obj_new_line, obj_new_value = find_section(start_char, end_char, opts.new)
+        compare_lists(obj_current_value, obj_new_value, obj_new_line)
 if __name__ == '__main__':
     try:
         start()
